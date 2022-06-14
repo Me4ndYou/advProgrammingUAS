@@ -8,13 +8,13 @@ namespace ClearSky
     {
         public float movePower = 10f;
         public float KickBoardMovePower = 15f;
-        /*public float jumpPower = 20f;*/ //Set Gravity Scale in Rigidbody2D Component to 5
+        public float jumpPower = 20f; //Set Gravity Scale in Rigidbody2D Component to 5
 
         private Rigidbody2D rb;
         private Animator anim;
         Vector3 movement;
         private int direction = 1;
-        /*bool isJumping = false;*/
+        bool isJumping = false;
         private bool alive = true;
         private bool isKickboard = false;
 
@@ -31,19 +31,19 @@ namespace ClearSky
             Restart();
             if (alive)
             {
-                /*Hurt();*/
+                Hurt();
                 Die();
                 Attack();
-                /*Jump();*/
+                //Jump();
                 KickBoard();
                 Run();
 
             }
         }
-        /*private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             anim.SetBool("isJump", false);
-        }*/
+        }
         void KickBoard()
         {
             if (Input.GetKeyDown(KeyCode.Alpha4) && isKickboard)
@@ -110,7 +110,7 @@ namespace ClearSky
                 transform.position += moveVelocity * KickBoardMovePower * Time.deltaTime;
             }
         }
-        /*void Jump()
+        void Jump()
         {
             if ((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0)
             && !anim.GetBool("isJump"))
@@ -129,7 +129,7 @@ namespace ClearSky
             rb.AddForce(jumpVelocity, ForceMode2D.Impulse);
 
             isJumping = false;
-        }*/
+        }
         void Attack()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -137,7 +137,7 @@ namespace ClearSky
                 anim.SetTrigger("attack");
             }
         }
-        /*void Hurt()
+        void Hurt()
         {
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
@@ -147,7 +147,7 @@ namespace ClearSky
                 else
                     rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
             }
-        }*/
+        }
         void Die()
         {
             if (Input.GetKeyDown(KeyCode.Alpha3))
